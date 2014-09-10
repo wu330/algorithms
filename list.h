@@ -14,7 +14,7 @@ typedef struct ListElmt_
 typedef struct List_
 {
     int  size;
-    int  (*match)(const void *key1, const void *key2);
+    int  (*match)(const void *key1, const void *key2);   // This is for structure "Set and else"
     void (*destroy)(void *data);
     ListElmt *head;
     ListElmt *tail;
