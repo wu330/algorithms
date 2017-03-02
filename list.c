@@ -6,25 +6,27 @@
 void list_init(List *list, void (*destroy)(void *data))
 {
     list->size    = 0;
-	list->destroy = destroy;
-	list->head    = NULL;
-	list->tail    = NULL;
+    list->destroy = destroy;
+    list->head    = NULL;
+    list->tail    = NULL;
 	
-	return;
+    return;
 }
 
 void list_destory(List *list)
 {
     void *data;
 	
-	while(list_size(list) > 0)
+    while(list_size(list) > 0)
+    {
+        if( (list_rem_next(list, NULL, void **(&data)) == 0) && (list->destroy != NULL) )
 	{
-	    if( (list_rem_next(list, NULL, void **(&data)) == 0) && (list->destroy != NULL) )
-		    list->destory(data);
+            list->destory(data);
 	}
+    }
 	
     memset(list, 0, sizeof(List));
-	return;
+    return;
 }
 
 int  list_ins_next(List *list, ListElmt *element, const void *data)
